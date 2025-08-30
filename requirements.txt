@@ -1,7 +1,9 @@
 kaggle
+streamlit
 pandas
 numpy
 matplotlib
 seaborn 
+plotly
 sqlite
 
