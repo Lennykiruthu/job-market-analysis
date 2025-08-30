@@ -18,7 +18,7 @@ def get_connection():
         # Download data via Kaggle
         os.system("kaggle datasets -d lennykiruthu/linkedin-jobs-sqlite --unzip -p ./data")
 
-        return sqlite3.connect(db_bath)
+        return sqlite3.connect(db_path)
 
 # Initiate sqlite connection to database
 conn = get_connection()
