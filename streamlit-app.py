@@ -1,6 +1,8 @@
 import os
 import sqlite3
 import pandas as pd
+import ast
+from collections import Counter
 import plotly.express as px
 import streamlit as st
 
@@ -9,19 +11,29 @@ os.environ["KAGGLE_USERNAME"] = st.secrets["KAGGLE_USERNAME"]
 os.environ["KAGGLE_KEY"] = st.secrets["KAGGLE_KEY"]
 
 # Create data directory is missing then download sqlite database from kaggle
+@st.cache_resource
 def get_connection():
-    db_path = "data/linkedin_jobs.db"
+    os.makedirs("data", exist_ok=True)
 
-    if not os.path.exists(db_path):
-        os.makedirs("data", exist_ok=True)
+    # Download if directory is empty
+    if not os.listdir("data"):
+        st.warning("No DB file found. Downloading from Kaggle...")
+    os.system("kaggle datasets download -d lennykiruthu/linkedin-jobs-sqlite --unzip -p ./data")
 
-        # Download data via Kaggle
-        os.system("kaggle datasets -d lennykiruthu/linkedin-jobs-sqlite --unzip -p ./data")
+    # Find the first .db file
+    db_files = [f for f in os.listdir("data") if f.endswith(".db")]
+    if not db_files:
+        st.error("No .db file found in ./data after download!")
+        return None
 
-        return sqlite3.connect(db_path)
+    db_path = os.path.join("data", db_files[0])
+
+    return sqlite3.connect(db_path, check_same_thread=False)
+
 
 # Initiate sqlite connection to database
 conn = get_connection()
+cur = conn.cursor()
 
 # Source positions table
 positions_df = pd.read_sql("SELECT * FROM positions;", conn)
@@ -38,7 +50,7 @@ selected_job = st.selectbox(
 st.write("You selected:", selected_job)
 
 # Select dataframe subset
-selected_job_df = stem_positions_df.query(f"cluster_name == '{selected_job}'")
+selected_job_df = positions_df.query(f"cluster_name == '{selected_job}'")
 
 # Convert strings to actual Python lists
 selected_job_df["cluster_skills"] = selected_job_df["cluster_skills"].apply(
