@@ -60,7 +60,7 @@ selected_job = st.sidebar.selectbox(
     "Select a job title:",
     sorted(unique_job_titles)
 )
-top_n_skills = st.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30)
+top_n_skills = st.sidebar.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30)
 
 st.write("You selected:", selected_job)
 
