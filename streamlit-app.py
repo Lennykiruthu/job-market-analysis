@@ -70,10 +70,10 @@ top_n_company_specialities = st.sidebar.number_input("Enter Top Company speciali
     help="Choose how many top company specialities you want to see. If the number is larger than the available specialities, all of them will be displayed.")    
 
 st.markdown(
-    f"<p style='font-size:20px;'><b><i>You selected: {selected_job}</i></b></p>",
+    f"<p style='font-size:19px;'><b><i>You selected: {selected_job}</i></b></p>",
     unsafe_allow_html=True)
 st.markdown(
-    "<p style='font-size:20px;'><b><i>Explore four visualizations for the selected role by scrolling through this page. Use the sidebar controls to adjust what you see.</i></b></p>",
+    "<p style='font-size:19px;'><b><i>Explore four visualizations for the selected role by scrolling through this page. Use the sidebar controls to adjust what you see.</i></b></p>",
     unsafe_allow_html=True)
 
 # ----------------------------- Merging ----------------------------- #
