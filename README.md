@@ -31,11 +31,8 @@ Additionally, I created an **engineered version of this dataset**, transformed i
 
 ### 2. Feature Engineering
 - Filtered job titles containing STEM-related keywords:
-- ```python
-stem_list = ['Data', 'Software', 'Engineer', 'Math', 'Account', 'Finance', 'Biology', 'Physics',
-             'Cloud', 'Full Stack', 'AI', 'ML', 'Machine Learning', 'Deep Learning', 'DevOps',
-             'Backend', 'Mechanical', 'Electrical', 'Civil', 'Chemical', 'Industrial', 'Chemistry',
-             'Auditor', 'Actuary', 'Banking', 'Research']
+ ```python
+stem_list = ['Data', 'Software', 'Engineer', 'Math', 'Account', 'Finance', 'Biology', 'Physics','Cloud', 'Full Stack', 'AI', 'ML', 'Machine Learning', 'Deep Learning', 'DevOps','Backend', 'Mechanical', 'Electrical', 'Civil', 'Chemical', 'Industrial', 'Chemistry','Auditor', 'Actuary', 'Banking', 'Research']         
 	```
 - Standardized 29,212 job titles into **100 clusters** using:
     1. **Sentence embeddings** (`sentence-transformers/all-MiniLM-L6-v2`) for semantic similarity.    
