@@ -33,7 +33,7 @@ Additionally, I created an **engineered version of this dataset**, transformed i
 - Filtered job titles containing STEM-related keywords:
  ```python
 stem_list = ['Data', 'Software', 'Engineer', 'Math', 'Account', 'Finance', 'Biology', 'Physics','Cloud', 'Full Stack', 'AI', 'ML', 'Machine Learning', 'Deep Learning', 'DevOps','Backend', 'Mechanical', 'Electrical', 'Civil', 'Chemical', 'Industrial', 'Chemistry','Auditor', 'Actuary', 'Banking', 'Research']         
-	```
+  ```
 - Standardized 29,212 job titles into **100 clusters** using:
     1. **Sentence embeddings** (`sentence-transformers/all-MiniLM-L6-v2`) for semantic similarity.    
     2. **KMeans clustering** to consolidate similar roles.    
@@ -65,9 +65,9 @@ stem_list = ['Data', 'Software', 'Engineer', 'Math', 'Account', 'Finance', 'Biol
 	pip install -r requirements.txt
 	```
 3. Launch the Streamlit dashboard:
-```
+ ```
 streamlit run streamlit-app.py
-```
+ ```
 ## Technologies Used
 - Python 3
 - Pandas, NumPy
