@@ -105,7 +105,8 @@ fig = px.bar(
     labels={"count": "Frequency (# of job postings)", "skill": "Skill"},
     height=600)
 
-fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"})
+fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
+    title_font=dict(size=24, family="Arial", color="black"))
 
 st.plotly_chart(fig, use_container_width=True)
 
