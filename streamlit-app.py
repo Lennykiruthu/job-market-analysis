@@ -63,13 +63,14 @@ selected_job = st.sidebar.selectbox(
 top_n_skills     = st.sidebar.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30,
     help="Choose how many top skills you want to see. If the number is larger than the available skills, all of them will be displayed.")
 top_n_industries = st.sidebar.number_input("Enter Top Industries to Show", min_value=0, step=1, value=30,
-    help="Choose how many top industries you want to see. If the number is larger than the available skills, all of them will be displayed.")
+    help="Choose how many top industries you want to see. If the number is larger than the available industries, all of them will be displayed.")
 top_n_companies = st.sidebar.number_input("Enter Top Companies to Show", min_value=0, step=1, value=5,
-    help="Choose how many top companies you want to see. If the number is larger than the available skills, all of them will be displayed.")
+    help="Choose how many top companies you want to see. If the number is larger than the available companies, all of them will be displayed.")
 top_n_company_specialities = st.sidebar.number_input("Enter Top Company specialities to Show", min_value=0, step=1, value=10,
-    help="Choose how many top company specialities you want to see. If the number is larger than the available skills, all of them will be displayed.")    
+    help="Choose how many top company specialities you want to see. If the number is larger than the available specialities, all of them will be displayed.")    
 
-st.write("You selected:", selected_job)
+st.write("## You selected:", selected_job)
+st.write("## **_Explore four visualizations for the selected role by scrolling through this page. Use the sidebar controls to adjust what you see.._**")
 
 # ----------------------------- Merging ----------------------------- #
 # Merge job industries and industries to get the industry per job id then merge the new dataframe to positions 
@@ -160,15 +161,15 @@ selected_job_merged_companies_df = merged_companies_df.query(f"cluster_name == '
 companies_counts = Counter(selected_job_merged_companies_df['company_name'].tolist())
 
 # Select the top 5 most common companies in each cluster
-top_5 = companies_counts.most_common(5)
+most_common_companies = companies_counts.most_common(top_n_companies)
 
-companies, counts = zip(*top_5)
+companies, counts = zip(*most_common_companies)
 
 # Convert top 5 into a DataFrame
 top_companies_df = pd.DataFrame({
     "company": companies,
     "count": counts
-}).sort_values(by="count", ascending=False).head(top_n_companies)
+}).sort_values(by="count", ascending=False)
 
 # ✅ Plot treemap
 fig = px.treemap(
@@ -193,15 +194,15 @@ selected_job_merged_companies_specialities_clean_df = selected_job_merged_compan
 companies_specialities_counts = Counter(selected_job_merged_companies_specialities_clean_df['speciality'].tolist())
 
 # Select the top 5 most common company specialities in each cluster
-top_10 = companies_specialities_counts.most_common(10)
+most_common_company_specialities = companies_specialities_counts.most_common(top_n_company_specialities)
 
-companies_specialities, speciality_counts = zip(*top_10)
+companies_specialities, speciality_counts = zip(*most_common_company_specialities)
 
 # Convert top 5 into a DataFrame
 top_company_specialities_df = pd.DataFrame({
     "company": companies_specialities,
     "count": speciality_counts
-}).sort_values(by="count", ascending=False).head(top_n_company_specialities)
+}).sort_values(by="count", ascending=False)
 
 # ✅ Plot treemap
 fig = px.treemap(
