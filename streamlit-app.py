@@ -1,3 +1,4 @@
+# ----------------------------- Imports ----------------------------- #
 import os
 import sqlite3
 import pandas as pd
@@ -6,10 +7,12 @@ from collections import Counter
 import plotly.express as px
 import streamlit as st
 
+# ----------------------------- Accessing Kaggle Credentials ----------------------------- #
 # Source credientials from streamlit secrets
 os.environ["KAGGLE_USERNAME"] = st.secrets["KAGGLE_USERNAME"]
 os.environ["KAGGLE_KEY"] = st.secrets["KAGGLE_KEY"]
 
+# ----------------------------- Creating Sqlite connections ----------------------------- #
 # Create data directory is missing then download sqlite database from kaggle
 @st.cache_resource
 def get_connection():
@@ -30,8 +33,6 @@ def get_connection():
 
     return sqlite3.connect(db_path, check_same_thread=False)
 
-# Title
-st.title("STEM Job Analysis")
 
 # Initiate sqlite connection to database
 conn = get_connection()
@@ -44,11 +45,18 @@ company_specialities_df = pd.read_sql("SELECT * FROM company_specialities", conn
 industries_df           = pd.read_sql("SELECT * FROM industries", conn)
 job_industries_df       = pd.read_sql("SELECT * FROM job_industries", conn)
 
+# ----------------------------- Creating Streamlit App (Start) ----------------------------- #
+# Title
+st.title("STEM Job Analysis")
+
+# Sidebar content
+st.sidebar.title("Sidebar Controls")
+
 # Store unique jobs titles created via clustering
 unique_job_titles = positions_df["cluster_name"].unique()
 
 # Make a dropdown
-selected_job = st.selectbox(
+selected_job = st.sidebar.selectbox(
     "Select a job title:",
     sorted(unique_job_titles)
 )
