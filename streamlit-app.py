@@ -60,6 +60,7 @@ selected_job = st.sidebar.selectbox(
     "Select a job title:",
     sorted(unique_job_titles)
 )
+top_n_skills = st.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30)
 
 st.write("You selected:", selected_job)
 
@@ -93,7 +94,7 @@ for skills in selected_job_df["cluster_skills"]:
     skill_counts.update(unique_skills)
 
 # ✅ Convert to DataFrame for easy plotting
-skills_df = pd.DataFrame(skill_counts.items(), columns=["skill", "count"]).sort_values(by="count", ascending=False)
+skills_df = pd.DataFrame(skill_counts.items(), columns=["skill", "count"]).sort_values(by="count", ascending=False).head(top_n_skills)
 
 # ✅ Plot bar chart
 fig = px.bar(
