@@ -69,8 +69,8 @@ top_n_companies = st.sidebar.number_input("Enter Top Companies to Show", min_val
 top_n_company_specialities = st.sidebar.number_input("Enter Top Company specialities to Show", min_value=0, step=1, value=10,
     help="Choose how many top company specialities you want to see. If the number is larger than the available specialities, all of them will be displayed.")    
 
-st.write("## You selected:", selected_job)
-st.write("## **_Explore four visualizations for the selected role by scrolling through this page. Use the sidebar controls to adjust what you see.._**")
+st.write("### You selected:", selected_job)
+st.write("### **_Explore four visualizations for the selected role by scrolling through this page. Use the sidebar controls to adjust what you see.._**")
 
 # ----------------------------- Merging ----------------------------- #
 # Merge job industries and industries to get the industry per job id then merge the new dataframe to positions 
