@@ -108,6 +108,9 @@ fig = px.bar(
 fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
     title_font=dict(size=24, family="Arial", color="white"))
 
+st.caption("This chart displays the top 30 skills most frequently mentioned in job descriptions for each job title,"
+"based on the number of times companies mention the skill in their descriptions.")
+
 st.plotly_chart(fig, use_container_width=True)
 
 # ----------------------------- Visualization 2 (Top 30 Industries per Job Title) ----------------------------- #
@@ -167,7 +170,7 @@ fig = px.treemap(
     values="count",          # sizes
     color="count",           # color intensity by job postings
     color_continuous_scale="Viridis",  # similar to your matplotlib colormap
-    title=f"Top 5 Companies Hiring {selected_job}"
+    title=f"Top 5 Companies Hiring for {selected_job}"
 )
 
 fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
@@ -199,7 +202,7 @@ fig = px.treemap(
     values="count",          # sizes
     color="count",           # color intensity by job postings
     color_continuous_scale="Viridis",  # similar to your matplotlib colormap
-    title=f"Top 10 Company Specialities in {selected_job}"
+    title=f"Top 10 Company Specialities for {selected_job}"
 )
 
 fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
