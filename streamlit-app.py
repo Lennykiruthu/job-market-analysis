@@ -108,10 +108,8 @@ fig = px.bar(
 fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
     title_font=dict(size=24, family="Arial", color="white"))
 
-st.caption("This chart displays the top 30 skills most frequently mentioned in job descriptions for each job title,"
-"based on the number of times companies mention the skill in their descriptions.")
-
 st.plotly_chart(fig, use_container_width=True)
+st.write("**_This chart displays the top 30 skills most frequently mentioned in job descriptions for each job title, based on the number of times companies list the skill._**")
 
 # ----------------------------- Visualization 2 (Top 30 Industries per Job Title) ----------------------------- #
 selected_job_merged_industry_df = merged_industries_df.query(f"cluster_name == '{selected_job}'")
@@ -145,6 +143,7 @@ fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yan
     title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
+st.write("**_Bar chart showing the 30 industries with the highest demand for each job type, measured by how often jobs are posted in those industries._**")
 
 # ----------------------------- Visualization 3 (Top 5 Hiring Companies) ----------------------------- #
 selected_job_merged_companies_df = merged_companies_df.query(f"cluster_name == '{selected_job}'")
@@ -177,6 +176,7 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor"
     title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
+st.write("**_This treemap shows the top 5 companies with the highest number of job postings for the selected role._**")
 
 # ----------------------------- Visualization 4 (Top 5 Hiring Companies) ----------------------------- #
 selected_job_merged_companies_specialities_df = merged_companies_specialities_df.query(f"cluster_name == '{selected_job}'")
@@ -209,3 +209,4 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor"
     title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
+st.write("**_Visualization of the top 10 most common company specialties among employers hiring for this job, with size representing the number of companies in each specialty._**")
