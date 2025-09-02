@@ -16,8 +16,8 @@ def get_connection():
     os.makedirs("data", exist_ok=True)
 
     # Download if directory is empty
-    if not os.listdir("data"):
-        st.warning("No DB file found. Downloading from Kaggle...")
+    # if not os.listdir("data"):
+    #     st.warning("No DB file found. Downloading from Kaggle...")
     os.system("kaggle datasets download -d lennykiruthu/linkedin-jobs-sqlite --unzip -p ./data")
 
     # Find the first .db file
@@ -30,6 +30,8 @@ def get_connection():
 
     return sqlite3.connect(db_path, check_same_thread=False)
 
+# Title
+st.title("STEM Job Analysis")
 
 # Initiate sqlite connection to database
 conn = get_connection()
