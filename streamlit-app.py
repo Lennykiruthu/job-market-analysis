@@ -106,7 +106,7 @@ fig = px.bar(
     height=600)
 
 fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
-    title_font=dict(size=24, family="Arial", color="black"))
+    title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
 
@@ -138,7 +138,8 @@ fig = px.bar(
     labels={"count": "Frequency (# of job postings)", "skill": "Skill"},
     height=600)
 
-fig.update_layout(yaxis=dict(dtick=1))
+fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
+    title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
 
@@ -169,7 +170,8 @@ fig = px.treemap(
     title=f"Top 5 Companies Hiring {selected_job}"
 )
 
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
+    title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
 
@@ -200,6 +202,7 @@ fig = px.treemap(
     title=f"Top 10 Company Specialities in {selected_job}"
 )
 
-fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
+    title_font=dict(size=24, family="Arial", color="white"))
 
 st.plotly_chart(fig, use_container_width=True)
