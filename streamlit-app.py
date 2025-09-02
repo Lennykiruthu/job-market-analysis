@@ -123,7 +123,7 @@ fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yan
 
 st.plotly_chart(fig, use_container_width=True)
 st.write(f"**_This chart displays the top {len(skills_df) if top_n_skills > len(skills_df) else top_n_skills}" 
-"skills most frequently mentioned in job descriptions for each job title, based on the number of times companies list the skill._**")
+" skills most frequently mentioned in job descriptions for each job title, based on the number of times companies list the skill._**")
 
 # ----------------------------- Visualization 2 (Top 30 Industries per Job Title) ----------------------------- #
 selected_job_merged_industry_df = merged_industries_df.query(f"cluster_name == '{selected_job}'")
@@ -158,7 +158,7 @@ fig.update_layout(yaxis=dict(dtick=1), title={"x":0.5, "xanchor": "center", "yan
 
 st.plotly_chart(fig, use_container_width=True)
 st.write(f"**_Bar chart showing the {len(top_industries_df) if top_n_industries > len(top_industries_df) else top_n_industries}" 
-"industries with the highest demand for each job type, measured by how often jobs are posted in those industries._**")
+" industries with the highest demand for each job type, measured by how often jobs are posted in those industries._**")
 
 # ----------------------------- Visualization 3 (Top 5 Hiring Companies) ----------------------------- #
 selected_job_merged_companies_df = merged_companies_df.query(f"cluster_name == '{selected_job}'")
@@ -192,7 +192,7 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor"
 
 st.plotly_chart(fig, use_container_width=True)
 st.write(f"**_This treemap shows the top {len(top_companies_df) if top_n_companies > len(top_companies_df) else top_n_companies}" 
-"companies with the highest number of job postings for the selected role._**")
+" companies with the highest number of job postings for the selected role._**")
 
 # ----------------------------- Visualization 4 (Top 5 Hiring Companies) ----------------------------- #
 selected_job_merged_companies_specialities_df = merged_companies_specialities_df.query(f"cluster_name == '{selected_job}'")
@@ -226,4 +226,4 @@ fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor"
 
 st.plotly_chart(fig, use_container_width=True)
 st.write(f"**_Visualization of the top {len(top_company_specialities_df) if top_n_company_specialities > len(top_company_specialities_df) else top_n_company_specialities}" 
-"most common company specialties among employers hiring for this job, with size representing the number of companies in each specialty._**")
+" most common company specialties among employers hiring for this job, with size representing the number of companies in each specialty._**")
