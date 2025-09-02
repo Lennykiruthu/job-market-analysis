@@ -60,7 +60,14 @@ selected_job = st.sidebar.selectbox(
     "Select a job title:",
     sorted(unique_job_titles)
 )
-top_n_skills = st.sidebar.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30)
+top_n_skills     = st.sidebar.number_input("Enter Top Skills to Show", min_value=0, step=1, value=30,
+    help="Choose how many top skills you want to see. If the number is larger than the available skills, all of them will be displayed.")
+top_n_industries = st.sidebar.number_input("Enter Top Industries to Show", min_value=0, step=1, value=30,
+    help="Choose how many top industries you want to see. If the number is larger than the available skills, all of them will be displayed.")
+top_n_companies = st.sidebar.number_input("Enter Top Companies to Show", min_value=0, step=1, value=5,
+    help="Choose how many top companies you want to see. If the number is larger than the available skills, all of them will be displayed.")
+top_n_company_specialities = st.sidebar.number_input("Enter Top Company specialities to Show", min_value=0, step=1, value=10,
+    help="Choose how many top company specialities you want to see. If the number is larger than the available skills, all of them will be displayed.")    
 
 st.write("You selected:", selected_job)
 
@@ -102,7 +109,7 @@ fig = px.bar(
     x="count",
     y="skill",
     orientation="h",
-    title=f"Top skills for {selected_job} Roles",
+    title=f"Top {len(skills_df) if top_n_skills > len(skills_df) else top_n_skills} skills for {selected_job} Roles",
     labels={"count": "Frequency (# of job postings)", "skill": "Skill"},
     height=600)
 
@@ -125,18 +132,18 @@ top_30 = industry_counts.most_common(30)
 industries, industry_counts = zip(*top_30)
 
 # Build a DataFrame from the top 30 industries
-top_30_df = pd.DataFrame({
+top_industries_df = pd.DataFrame({
     "industry": industries,
     "count": industry_counts
-})
+}).sort_values(by="count", ascending=False).head(top_n_industries)
 
 # ✅ Plot bar chart
 fig = px.bar(
-    top_30_df.sort_values("count", ascending=True),
+    top_industries_df.sort_values("count", ascending=True),
     x="count",
     y="industry",
     orientation="h",
-    title=f"Top Industries for {selected_job} Roles",
+    title=f"Top {len(top_industries_df) if top_n_industries > len(top_industries_df) else top_n_industries} Industries for {selected_job} Roles",
     labels={"count": "Frequency (# of job postings)", "skill": "Skill"},
     height=600)
 
@@ -158,19 +165,19 @@ top_5 = companies_counts.most_common(5)
 companies, counts = zip(*top_5)
 
 # Convert top 5 into a DataFrame
-top_5_df = pd.DataFrame({
+top_companies_df = pd.DataFrame({
     "company": companies,
     "count": counts
-})
+}).sort_values(by="count", ascending=False).head(top_n_companies)
 
 # ✅ Plot treemap
 fig = px.treemap(
-    top_5_df,
+    top_companies_df,
     path=["company"],        # hierarchy — here just company names
     values="count",          # sizes
     color="count",           # color intensity by job postings
     color_continuous_scale="Viridis",  # similar to your matplotlib colormap
-    title=f"Top 5 Companies Hiring for {selected_job}"
+    title=f"Top {len(top_companies_df) if top_n_companies > len(top_companies_df) else top_n_companies} Companies Hiring for {selected_job}"
 )
 
 fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
@@ -191,19 +198,19 @@ top_10 = companies_specialities_counts.most_common(10)
 companies_specialities, speciality_counts = zip(*top_10)
 
 # Convert top 5 into a DataFrame
-top_10_df = pd.DataFrame({
+top_company_specialities_df = pd.DataFrame({
     "company": companies_specialities,
     "count": speciality_counts
-})
+}).sort_values(by="count", ascending=False).head(top_n_company_specialities)
 
 # ✅ Plot treemap
 fig = px.treemap(
-    top_10_df,
+    top_company_specialities_df,
     path=["company"],        # hierarchy — here just company names
     values="count",          # sizes
     color="count",           # color intensity by job postings
     color_continuous_scale="Viridis",  # similar to your matplotlib colormap
-    title=f"Top 10 Company Specialities for {selected_job}"
+    title=f"Top {len(top_company_specialities_df) if top_n_company_specialities > len(top_company_specialities_df) else top_n_company_specialities} Company Specialities for {selected_job}"
 )
 
 fig.update_layout(margin=dict(t=50, l=25, r=25, b=25), title={"x":0.5, "xanchor": "center", "yanchor": "top"},
