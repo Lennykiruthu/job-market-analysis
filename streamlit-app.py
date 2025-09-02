@@ -47,7 +47,7 @@ job_industries_df       = pd.read_sql("SELECT * FROM job_industries", conn)
 
 # ----------------------------- Creating Streamlit App (Start) ----------------------------- #
 # Title
-st.title("STEM Job Analysis")
+st.title("STEM Job Market Analysis")
 
 # Sidebar content
 st.sidebar.title("Sidebar Controls")
