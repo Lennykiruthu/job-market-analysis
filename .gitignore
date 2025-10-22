@@ -1,6 +1,8 @@
 *.csv
 *.db
 *.zip
+*.png
 .streamlit
 dataset
 data
+.vscode
