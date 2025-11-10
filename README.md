@@ -11,7 +11,7 @@ Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
 The dataset contains multiple CSV files including:
 
 - `companies.csv`
-- `company_industries.csv
+- `company_industries.csv`
 - `company_specialities.csv`
 - `employee_counts.csv`
 - `benefits.csv`
